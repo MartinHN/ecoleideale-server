@@ -6,7 +6,8 @@
   "author": "DanielDeutsch <deudan1010@gmail.com>",
   "license": "none",
   "scripts": {
-    "start": "node --inspect app ",
+    "start": "node app ",
+    "dbg": "node --inspect app ",
     "watch": "nodemon app && mongod"
   },
   "dependencies": {

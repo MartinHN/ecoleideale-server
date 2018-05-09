@@ -44,7 +44,7 @@ router.get('/ping',(req,res,next)=>{
 
 //POST route for updating data
 router.post('/', function (req, res, next) {
-
+console.log(req.body)
   if (req.body.email &&
     req.body.username &&
     req.body.pass ) {
@@ -57,12 +57,15 @@ router.post('/', function (req, res, next) {
 
     User.create(userData, function (err, user) {
       if (err) {
-        req.json({servermsg:err,success:false});
+        res.json({servermsg:err,success:false});
+        
       } else {
         req.session.userId = user._id;
-        res.redirect('/api/user/profile');
+        return res.json({success:true,servermsg:'user created'});
+        // res.redirect('/api/user/profile');
+        
       }
-      return  res.json({success:true,servermsg:'user created'});
+      
       
     });
 
@@ -85,9 +88,9 @@ router.post('/', function (req, res, next) {
   } else {
     // var err = new Error('All fields required.');
     // err.status = 400;
-    res.json({success:false,servermsg:'All fields required.'})
+    return res.json({success:false,servermsg:'All fields required.'})
 
-    return ;//next(err);
+    
   }
 })
 
