@@ -1,0 +1,64 @@
+backend:
+  name: git-gateway
+  branch: master # Branch to update (optional; defaults to master)
+  
+media_folder: "static/images/uploads" # Media files will be stored in the repo under static/images/uploads
+public_folder: "static/images/uploads" # The src attribute for uploaded media will begin with static/images/uploads
+display_url: https://ecoleideale.netlify.com/
+slug:
+  encoding: "ascii"
+  clean_accents: true
+
+collections:
+  - name: "faq" # Used in routes, e.g., /admin/collections/blog
+    label: "FAQ" # Used in the UI
+    folder: "src/md/FAQ" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Layout", name: "layout", widget: "hidden", default: "faq"}
+      - {label: "Title", name: "title", widget: "string"}
+      # - {label: "Publish Date", name: "date", widget: "datetime"}
+      # - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      # - {label: "Rating (scale of 1-5)", name: "rating", widget: "number"}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "peer-comments" # Used in routes, e.g., /admin/collections/blog
+    label: "peer-comments" # Used in the UI
+    folder: "src/md/peer-comments" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Layout", name: "layout", widget: "hidden", default: "peer-comment"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Author", name: "author", widget: "string"}
+      - {label: "Photo", name: "photo", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "propositions" # Used in routes, e.g., /admin/collections/blog
+    label: "propositions" # Used in the UI
+    folder: "src/md/propositions" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Layout", name: "layout", widget: "hidden", default: "peer-comment"}
+      - {label: "Title", name: "title", widget: "string"}
+      - name: "tags"
+        label: "Tags"
+        widget: "list"
+        default: ["education"]
+        allow_add: true
+        field: {label: "Tag", name: "tag", widget: "string"}
+      - {label: "Author", name: "author", widget: "string", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "pages" # Used in routes, e.g., /admin/collections/blog
+    label: "pages" # Used in the UI
+    folder: "src/md/" # The path to the folder where the documents are stored
+    create: false # Allow users to create new documents in this collection
+    delete: false
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Layout", name: "layout", widget: "hidden", default: "", required: false}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}

@@ -1,0 +1,24 @@
+.DS_Store
+node_modules/
+/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/test/
+/test/unit/coverage/
+/analysis/
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sublime*
+
+/public/*
+!/public/static/
+/public/static/*
+!/public/static/admin
+
+
